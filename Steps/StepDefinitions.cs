@@ -9,6 +9,8 @@ namespace API_testing.Steps
     [Binding]
     public sealed class StepDefinitions
     {
+        const string apiUrl = "http://api.mathjs.org/v4/";
+
         private IRestResponse response;
         private ExpressionResponse deserializedResponse;
         private string number;
@@ -22,7 +24,7 @@ namespace API_testing.Steps
         [When("I extract the square root")]
         public void ExtractTheSquareRoot()
         {
-            RestClient client = new RestClient("http://api.mathjs.org/v4/");
+            RestClient client = new RestClient(apiUrl);
             RestRequest request = new RestRequest("?expr=sqrt(" + number + ")", Method.GET);
             response = client.Execute(request);
         }
